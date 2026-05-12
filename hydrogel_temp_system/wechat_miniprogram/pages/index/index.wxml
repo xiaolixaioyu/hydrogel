@@ -1,0 +1,60 @@
+<view class="container">
+  <view class="header">
+    <text class="title">🌡️ 水凝胶温度检测</text>
+    <text class="subtitle">基于CNN的智能体温识别系统</text>
+  </view>
+
+  <view class="content">
+    <view class="image-section">
+      <view class="image-container" bindtap="chooseImage">
+        <image 
+          wx:if="{{tempImage}}" 
+          src="{{tempImage}}" 
+          mode="aspectFit" 
+          class="preview-image"
+        ></image>
+        <view wx:else class="placeholder">
+          <text class="placeholder-icon">📷</text>
+          <text class="placeholder-text">点击拍照或选择照片</text>
+          <text class="placeholder-hint">请拍摄贴有水凝胶的皮肤区域</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="result-section" wx:if="{{temperature !== null}}">
+      <view class="temperature-display">
+        <text class="temperature-value">{{temperature}}</text>
+        <text class="temperature-unit">°C</text>
+      </view>
+      <view class="status-badge status-{{status.level}}">
+        <text class="status-text">{{status.label}}</text>
+      </view>
+      <text class="status-message">{{status.message}}</text>
+    </view>
+
+    <view class="button-section">
+      <button 
+        class="btn btn-primary" 
+        bindtap="chooseImage"
+        disabled="{{loading}}"
+      >
+        {{loading ? '检测中...' : '拍照/选择照片'}}
+      </button>
+      <button 
+        class="btn btn-secondary" 
+        bindtap="clearResult"
+        wx:if="{{temperature !== null}}"
+      >
+        重新检测
+      </button>
+    </view>
+
+    <view class="info-section">
+      <text class="info-title">💡 使用说明</text>
+      <text class="info-text">1. 将温敏水凝胶贴贴在皮肤表面</text>
+      <text class="info-text">2. 等待水凝胶颜色稳定（约30秒）</text>
+      <text class="info-text">3. 拍摄清晰的照片</text>
+      <text class="info-text">4. 系统将自动识别温度</text>
+    </view>
+  </view>
+</view>
