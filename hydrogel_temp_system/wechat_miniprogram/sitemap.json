@@ -1,0 +1,10 @@
+{
+  "desc": "关于本项目文档的说明，详见 https://docs.xpmethod.com",
+  "setting": {
+    "urlCheck": false
+  },
+  "rules": [{
+    "action": "allow",
+    "page": "*"
+  }]
+}
